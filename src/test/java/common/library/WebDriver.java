@@ -2,7 +2,7 @@
 @author Kunal Soni
 */
 
-package library;
+package common.library;
 
 import common.TestBase;
 import org.openqa.selenium.By;

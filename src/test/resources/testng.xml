@@ -3,8 +3,7 @@
 <suite name="Suite" verbose="2">
     <test name="Test">
         <classes>
-            <class name="com.sample.www.TC01MainPage"/>
-            <class name="com.sample.www.TC02Flights"/>
+            <class name="com.sample.www.Exercises.TC03"/>
         </classes>
     </test>
 </suite>

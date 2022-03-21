@@ -9,21 +9,26 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.JsonFormatter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.sample.www.TestNopCommerceForm;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import library.WebDriver;
+import common.library.WebDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.EncryptedDocumentException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -55,6 +60,7 @@ public class TestBase {
         propertiesLoad();
         extentReportSpark();
         openBrowser();
+        TestNopCommerceForm.setup();
     }
 
     @AfterSuite(alwaysRun = true)
@@ -68,6 +74,9 @@ public class TestBase {
     public void tearDown(ITestResult result) {
 
         if (result.getStatus() == ITestResult.FAILURE) {
+
+            Utility.captureScreenshot(driver, result.getName());
+
             test.fail(result.getName() + " test case is failed. " + "<span class='badge badge-danger'> Fail </span>" + result.getThrowable());
             test.fail(new Throwable());
             test.fail(new Exception());

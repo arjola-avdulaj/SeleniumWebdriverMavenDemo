@@ -19,10 +19,10 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.sample.www" level="debug" additivity="true">
-            <appender-ref ref="fileLogger" level="debug" />
+        <Logger name="com.sample.www" level="info" additivity="true">
+            <appender-ref ref="fileLogger" level="info" />
         </Logger>
-        <Root level="debug" additivity="false">
+        <Root level="info" additivity="false">
             <appender-ref ref="console" />
         </Root>
     </Loggers>
